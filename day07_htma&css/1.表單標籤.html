@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>表單標籤</title>
+</head>
+<body>
+    <!--
+        form：用於定義表單，可以定義一個範圍，範圍代表採集用戶數據的範圍。
+            *屬性
+                *action：指定提交數據的URL
+                *method：指定提交方式
+                    *分類：一共7種，2種較常使用
+                        get：
+                            1.請求參數會在地址欄中顯示，會封裝載請求行中
+                            2.請求參數的長度是有限制的
+                            3.不太安全
+                        post：
+                            1.請求參數不會在地址欄中顯示，會封裝在請求體中(http協議後講解)
+                            2.請求參數的長度是沒有限制的
+                            3.比較安全
+
+            *表單項中的數據要想被提交，必須指定其name屬性。
+
+    -->
+
+    <form action="#" method="post">
+    用戶名：<input name="username"><br>
+    密碼：<input name="password"><br>
+        <input type="submit" value="登入">
+    </form>
+
+
+
+
+
+</body>
+</html>

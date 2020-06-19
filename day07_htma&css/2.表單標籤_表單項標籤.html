@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>表單標籤_表單項標籤</title>
+</head>
+<body>
+<!--
+    form：用於定義表單，可以定義一個範圍，範圍代表採集用戶數據的範圍。
+        *屬性
+            *action：指定提交數據的URL
+            *method：指定提交方式
+                *分類：一共7種，2種較常使用
+                    get：
+                        1.請求參數會在地址欄中顯示，會封裝載請求行中
+                        2.請求參數的長度是有限制的
+                        3.不太安全
+                    post：
+                        1.請求參數不會在地址欄中顯示，會封裝在請求體中(http協議後講解)
+                        2.請求參數的長度是沒有限制的
+                        3.比較安全
+
+        *表單項中的數據要想被提交，必須指定其name屬性。
+
+-->
+
+<form action="#" method="get">
+    <label for="username">用戶名：</label><input type="text" name="username" placeholder="請輸入帳號" id="username"><br>
+    <label for="password">密碼：</label><input type="password" name="password" placeholder="請輸入密碼" id="password"><br>
+    性別：<input type="radio" name="gender" value="male" checked=checked>男
+    <input type="radio" name="gender" value="female">女
+    <br>
+    興趣：<input type="checkbox" name="hobby" value="fitness" checked="checked">健身
+    <input type="checkbox" name="hobby" value="videogame">電玩
+    <input type="checkbox" name="hobby" value="movie">電影
+    <br>
+    取色器：<input type="color" name="color"><br>
+    生日：<input type="date" name="birthday"><br>
+    生日：<input type="datetime-local" name="birthday"><br>
+    圖片：<input type="file" name="pic"><br>
+    隱藏域：<input type="hidden" name="id" value="abc"><br>
+    email：<input type="email" name="emil"><br>
+    年齡：<input type="number" name="age"><br>
+
+    居住區：<select name="area">
+    <option value="">---請選擇---</option>
+    <option value="1">台北市</option>
+    <option value="2" selected>新北市</option>
+    <option value="3">桃園市</option>
+    <option value="4">台中市</option>
+    <option value="5">台南市</option>
+    <option value="6">高雄市</option>
+    </select><br>
+
+    自我介紹：<textarea cols="20" rows="5" name="des"></textarea><br>
+    <br>
+    <input type="submit" value="登入">
+    <input type="button" value="按鈕"><br>
+    <input type="image" src="signup.png">
+</form>
+
+
+</body>
+</html>
