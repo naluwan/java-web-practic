@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e4818722-ccc9-47c2-9837-4503cb599a9c" name="Default Changelist" comment="" />
+    <list default="true" id="8e3e9df6-58a4-4827-aa1b-21c138c970b6" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +14,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectId" id="1dWQPA60xh2Q4wXZvewWh3ugAUD" />
+  <component name="ProjectId" id="1dnepu657kDsIL1myILk99fJaqX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -31,23 +31,18 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e4818722-ccc9-47c2-9837-4503cb599a9c" name="Default Changelist" comment="" />
-      <created>1592538342540</created>
+      <changelist id="8e3e9df6-58a4-4827-aa1b-21c138c970b6" name="Default Changelist" comment="" />
+      <created>1593065470078</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1592538342540</updated>
-      <workItem from="1592538351539" duration="60000" />
-      <workItem from="1592538560257" duration="11970000" />
-      <workItem from="1593056431813" duration="5126000" />
+      <updated>1593065470078</updated>
+      <workItem from="1593065475184" duration="7523000" />
     </task>
     <servers />
   </component>
@@ -55,17 +50,9 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="495" y="271" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1593065354447">
+    <state x="404" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1593065964197">
       <screen x="38" y="23" width="1402" height="877" />
     </state>
-    <state x="495" y="271" key="#com.intellij.fileTypes.FileTypeChooser/38.23.1402.877@38.23.1402.877" timestamp="1593065354447" />
-    <state x="432" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1593056432729">
-      <screen x="38" y="23" width="1402" height="877" />
-    </state>
-    <state x="432" y="294" key="com.intellij.ide.util.TipDialog/38.23.1402.877@38.23.1402.877" timestamp="1593056432729" />
-    <state x="168" y="188" key="new project wizard" timestamp="1593065470009">
-      <screen x="38" y="23" width="1402" height="877" />
-    </state>
-    <state x="168" y="188" key="new project wizard/38.23.1402.877@38.23.1402.877" timestamp="1593065470009" />
+    <state x="404" y="213" width="670" height="676" key="search.everywhere.popup/38.23.1402.877@38.23.1402.877" timestamp="1593065964197" />
   </component>
 </project>

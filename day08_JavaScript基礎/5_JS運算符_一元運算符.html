@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>一元運算符</title>
+
+    <script>
+
+        /*一元運算符：只有一個運算樹的運算符
+        ++, --, +(正號), -(負號)
+            ++ -- 自增(自減)
+                ++(--)在前，先自增(自減)，再運算。
+                ++(--)在後，先運算，再自增(自減)。
+
+            +(-)：正負號
+            注意：在JS中，如果運算數不是運算符所要求的類型，JS引擎會自動將運算數進行類型轉換。
+                其他類型轉number：
+                    string轉number：按照字面值轉換。如果字面值不是數字，則轉為NaN(不是數字的數字)
+                    boolean轉number：true轉為1，false轉為0。
+                */
+        var num = 3;
+        var a = ++num;
+        document.write(num + "<br>");
+        document.write(a + "<br>");
+        document.write("<hr>");
+
+        var b = +"abc";
+        document.write(typeof (b) + "<br>");
+        document.write(b + 1 + "<br>");
+        document.write("<hr>");
+
+        var flag = + true;
+        var flag2 = + false;
+        document.write(typeof (flag) + "<br>");
+        document.write(flag + "<br>");
+        document.write(flag2 + "<br>");
+
+    </script>
+
+
+</head>
+<body>
+
+
+</body>
+</html>

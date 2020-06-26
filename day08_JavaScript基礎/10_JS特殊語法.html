@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>特殊語法</title>
+
+    <script>
+        //1.語句以分號結尾，如果一行只有一個語句，則可以省略(不建議)
+        var a = 3;
+        // alert(a);
+
+
+        /*
+            2.變量的定義使用var關鍵字，也可以不使用
+            用：定義的變量，是局部變量。
+            不用：定義的變量，是全域變量。(不建議)
+        */
+        /*var b = 4;
+        alert(b);
+        b1 = 5;
+        alert(b1);*/
+        var b;
+        function fun() {
+            b = 6;
+
+        }
+
+        fun();
+        alert(b);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
