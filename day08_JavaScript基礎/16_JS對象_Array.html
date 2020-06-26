@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>Array對象</title>
+
+    <SCRIPT>
+        /*
+            Array：陣列對象
+                1.創建：
+                    (1) var arr = new Array(元素列表);
+                    (2) var arr = new Array(默認長度);
+                    (3) var arr = [元素列表];
+
+                2.方法：
+                    (1)join(參數)：將陣列中的元素按照指定的分隔符拼接成字符串
+                    (2)push()：向陣列的末尾添加一個或更多的元素，並返回新的長度
+
+                3.屬性：
+                    (1)length：陣列的長度
+
+                4.特點：
+                    (1)JS中，陣列元素的類型是可變的
+                    (2)JS中，陣列的長度是可變的
+
+                5.調用：
+
+         */
+
+        //1.創建方式
+        /*var arr1 = new Array(1,2,3);
+        var arr2 = new Array(5);
+        var arr3 = [1,2,3,4];
+        var arr4 = new Array();
+
+        document.write(arr1 + "<br>");
+        document.write(arr2  + "<br>");
+        document.write(arr3 + "<br>");
+        document.write(arr4 + "<br>");*/
+
+        var arr = [1,"abc",true];
+        document.write(arr + "<br>");
+        document.write(arr[0] + "<br>");
+        document.write(arr[1] + "<br>");
+        document.write(arr[2] + "<br>");
+
+        arr[10] = "naluwan";
+        document.write(arr[10] + "<br>");
+
+        //alert(arr.length);
+        document.write(arr.join("==") + "<br>")
+        arr.push(11);
+        document.write(arr.join("==") + "<br>")
+
+    </SCRIPT>
+</head>
+<body>
+
+</body>
+</html>

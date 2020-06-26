@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RegExp對象</title>
+
+    <script>
+        /*
+            RegExp：正則表達式對象
+                1.創建：
+                    (1) var reg = new RegExp("正則表達式");
+                    (2) var reg = /正則表達式/;
+
+                2.方法：
+                    (1) test(參數)：驗證指定字符串是否符合正則定義的規範
+
+         */
+
+        //創建方式(1)
+        var reg = new RegExp("^\\w{6,12}$");
+
+        //創建方式(2)
+        var reg2 = /^\w{6,12}$/;
+
+        // alert(reg);
+        // alert(reg2);
+
+        var username = "naluwan";
+        var username2 = "naluwan19881230"
+
+        //驗證
+        var flag = reg2.test(username);
+        //alert(flag);
+
+        var flag2 = reg.test(username2);
+        alert(flag2)
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

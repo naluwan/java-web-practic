@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Global對象</title>
+
+    <script>
+        /*
+            Global：全局對象
+                1.特點：全局對象，這個Global中封裝的方法不需要對象就可以直接調用。
+                    方法名();
+
+                2.方法：
+                    (1) encodeURI()：URL編碼
+                        decodeURI()：URL解碼
+
+                    (2) encodeURIComponent()：URL編碼(編碼的字符更多)
+                        decodeURIComponent()：URL解碼
+
+                    (3) parseInt()：將字符串轉為數字
+                        * 逐一判斷每一個字符是否是數字，直到不是數字為止，將前邊數字部分轉為number
+
+                    (4) isNaN()：判斷一個值是否是NaN
+                        *NaN六親不認，連自己都不認，NaN參與的==比較全部為false
+
+                    (5) eval()：將JavaScript字符串，轉成腳本代碼來執行
+
+
+                3.URL編碼：
+                    http://wwww.google.com?wd=那魯灣 = http://wwww.google.com?wd=%E9%82%A3%E9%AD%AF%E7%81%A3
+
+         */
+
+        var str = "http://wwww.google.com?wd=那魯灣";
+        var encode = encodeURI(str);
+        document.write(encode + "<br>");//http://wwww.google.com?wd=%E9%82%A3%E9%AD%AF%E7%81%A3
+
+        var s = decodeURI(encode);
+        document.write(s + "<br>");//那魯灣
+
+        var str = "http://wwww.google.com?wd=那魯灣";
+        var encode1 = encodeURIComponent(str);
+        document.write(encode1 + "<br>");//http%3A%2F%2Fwwww.google.com%3Fwd%3D%E9%82%A3%E9%AD%AF%E7%81%A3
+
+        var s1 = decodeURIComponent(encode);
+        document.write(s1 + "<br>");//那魯灣
+
+        var str = "234abc";
+        var num = parseInt(str);
+        //alert(num + 1);
+
+        var a = NaN;
+
+        document.write((a == NaN) + "<br>");
+        document.write(isNaN(a) + "<br>");
+
+        var jscode = "alert(123)"
+        eval(jscode);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
