@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>表格全選</title>
+
+    <style>
+
+        table{
+            border: 1px solid;
+            width: 500px;
+            margin-left: 30%;
+        }
+
+        td,th{
+            text-align: center;
+            border: 1px solid;
+        }
+
+        div{
+            margin-top: 10px;
+            margin-left: 30%;
+        }
+
+        .out{
+            background-color: white;
+        }
+
+        .over{
+            background-color: pink;
+        }
+
+    </style>
+
+    <script>
+
+        /*
+            分析：
+                1.全選：
+                    (1) 獲取所有的checkbox
+                    (2) 遍歷checkbox，設置每一個checkbox的狀態為選中 checked
+         */
+        //1.在頁面加載完後綁定事件
+        window.onload = function () {
+            //2.給全選按鈕綁訂點擊事件
+            document.getElementById("selectAll").onclick = function () {
+                //全選
+                //1.獲取所有的checkbox
+                var cbs = document.getElementsByName("cb");
+                //2.遍歷checkbox
+                for(var i = 0 ; i < cbs.length ; i++){
+                    //3.設置每一個checkbox的狀態為選中
+                    cbs[i].checked = true;
+                }
+            }
+
+            //3.給全不選按鈕綁定點擊事件
+            document.getElementById("unselectAll").onclick = function () {
+                //全不選
+                //1.獲取所有的checkbox
+                var cbs = document.getElementsByName("cb");
+                //2.遍歷checkbox
+                for(var i = 0 ; i < cbs.length ; i++){
+                    //3.設置每一個checkbox的狀態為沒選中
+                    cbs[i].checked = false;
+                }
+            }
+
+            //4.給反選按鈕綁定點擊事件
+            document.getElementById("selectRev").onclick = function () {
+                //反選
+                //1.獲取所有的checkbox
+                var cbs = document.getElementsByName("cb");
+                //2.遍歷checkbox
+                for(var i = 0 ; i < cbs.length ; i++){
+                    //3.設置每一個checkbox的狀態為相反
+                    cbs[i].checked = !cbs[i].checked;
+                }
+            }
+
+            //5.給第一個checkbox按鈕綁定點擊事件
+            document.getElementById("firstcb").onclick = function () {
+                //第一個checkbox點擊
+                //1.獲取所有的checkbox
+                var cbs = document.getElementsByName("cb");
+                //獲取第一個checkbox
+                //上面已經獲取過第一個checkbox被點擊的狀態，所以this就等於獲取第一個的狀態
+                //2.遍歷checkbox
+                for(var i = 0 ; i < cbs.length ; i++){
+                    //3.設置每一個checkbox的狀態和第一個checkbox的狀態一樣(this)
+                    cbs[i].checked = this.checked;
+                }
+            }
+
+            //給所有tr綁定滑鼠移動到元素上和滑鼠移出元素事件
+            var trs = document.getElementsByTagName("tr");
+            //2.遍歷
+            for(var i = 0 ; i < trs.length ; i++){
+                //移到元素之上
+                trs[i].onmouseover = function () {
+                    this.className = "over";
+                }
+
+                //移出元素
+                trs[i].onmouseout = function () {
+                    this.className = "out";
+                }
+            }
+        }
+
+
+    </script>
+
+</head>
+<body>
+
+<table>
+
+    <caption>學生資料表</caption>
+    <tr>
+        <td><input type="checkbox" name="cb" id="firstcb"> </td>
+        <td>編號</td>
+        <td>姓名</td>
+        <td>性別</td>
+        <td>操作</td>
+    <tr>
+
+    <tr>
+        <td><input type="checkbox" name="cb"> </td>
+        <td>1</td>
+        <td>簡碩亨</td>
+        <td>男</td>
+        <td><a href="javascript:void(0);">刪除</a></td>
+    <tr>
+
+    <tr>
+        <td><input type="checkbox" name="cb"> </td>
+        <td>2</td>
+        <td>那魯灣</td>
+        <td>男</td>
+        <td><a href="javascript:void(0);">刪除</a></td>
+    <tr>
+
+    <tr>
+        <td><input type="checkbox" name="cb"> </td>
+        <td>3</td>
+        <td>Rita</td>
+        <td>女</td>
+        <td><a href="javascript:void(0);">刪除</a></td>
+    <tr>
+
+</table>
+
+<div>
+    <input type="button" id="selectAll" value="全選">
+    <input type="button" id="unselectAll" value="全不選">
+    <input type="button" id="selectRev" value="反選">
+</div>
+
+
+
+
+
+</body>
+</html>

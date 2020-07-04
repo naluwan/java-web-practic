@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>常見事件</title>
+
+    <script>
+        /*
+            事件監聽機制：
+                * 概念：某些組件被執行了某些操作後，觸發某些代碼的執行
+                    * 事件：某些操作，如：單擊、雙擊、鍵盤暗下、滑鼠移動
+                    * 事件源：組件，如：按鈕、文本輸入框....
+                    * 監聽器：代碼
+                    * 註冊監聽：將事件、事件源、監聽器結合在一起，當事件源上發生了某個事件，則觸發執行了某個監聽器代碼
+
+                * 常見的事件：
+                    1.點擊事件：
+                        (1) onclick：單擊事件
+                        (2) ondbclick：雙擊事件
+
+                    2.焦點事件：
+                        (1) onblur：失去焦點
+                            * 一般用於表單驗證
+                        (2) onfocus：獲得焦點
+
+                    3.加載事件：
+                        (1) onload：一張頁面或一幅圖像完成加載
+
+                    4.滑鼠事件：
+                        (1) onmousedown：滑鼠按鈕被暗下
+                            * 定義方法時，定義一格型態，接受event
+                            * event對象的button屬性可以獲取滑鼠哪個鍵被點擊了
+                        (2) onmouseup：滑鼠按鈕被鬆開
+                        (3) onmousemove：滑鼠被移動
+                        (4) onemouseover：滑鼠移到某元素上
+                        (5) onmouseout：滑鼠從某元素移開
+
+                    5.鍵盤事件：
+                        (1) onkeydown：某個鍵盤按鍵被按下
+                        (2) onkeyup：某個鍵盤按鍵被鬆開
+                        (3) onkeypress：某個鍵盤按鍵被按下鬆開
+
+                    6.選擇和改變：
+                        (1) onchange：域的內容被改變
+                        (2) onselect：文本被選中
+
+                    7.表單事件：
+                        (1) onsubmit：確認按鈕被點擊
+                            * 可以阻止表單的提交(驗證失敗的時候)
+                                * 方法要返回false則會阻止提交表單
+                        (2) onreset：重制按鈕被點擊
+
+         */
+    </script>
+
+    <script>
+
+        //2.加載完成事件 onload
+        window.onload = function () {
+            // //1.失去焦點事件
+            // document.getElementById("username").onblur = function () {
+            //     alert("失去焦點了");
+            // }
+            //
+            // //3.綁定滑鼠移動到元素上事件
+            // document.getElementById("username").onmouseover = function () {
+            //     alert("滑鼠來了!!");
+            // }
+
+            // //4.綁定滑鼠點擊事件
+            // document.getElementById("username").onmousedown = function (event) {
+            //     //alert("滑鼠被點擊了!!");
+            //     //alert(event.button);
+            //
+            // }
+
+            // //5.鍵盤點擊事件
+            // document.getElementById("username").onkeydown = function (event) {
+            //     //alert(event.button);
+            //     if(event.keyCode == 13){
+            //         alert("提交表單")
+            //     }
+            // }
+
+            // //6.域改變事件
+            // document.getElementById("username").onchange = function (event) {
+            //   alert("改變了!!");
+            // }
+            //
+            // document.getElementById("city").onchange = function (event) {
+            //     alert("改變了!!");
+            // }
+
+            //7.表單事件
+            // document.getElementById("form").onsubmit = function () {
+            //     //驗證用戶名格式是否正確
+            //     var flag = false;
+            //
+            //
+            //     return flag;
+            // }
+        }
+
+        function checkForm(){
+            return true;
+        }
+
+
+    </script>
+</head>
+<body>
+
+
+
+<!--
+    function fun(){
+       return checkForm();
+    }
+-->
+
+<form action="#" id="form" onclick="return checkForm();">
+
+    <input id="username" name="username">
+
+<select id="city">
+    <option>---請選擇---</option>
+    <option>台北</option>
+    <option>新北</option>
+    <option>台中</option>
+    <option>高雄</option>
+</select>
+
+    <input type="submit" value="提交">
+
+</form>
+
+</body>
+</html>

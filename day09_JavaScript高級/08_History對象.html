@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>History對象</title>
+    <script>
+        /*
+            History：歷史紀錄對象
+            1.創建(獲取)：
+                (1) window.history
+                (2) history
+
+
+            2.方法：
+                (1) back()：加載history列表中的前一個URL
+                (2) forward()：加載history列表中的下一個URL
+                (3) go(參數)：加載history列表中的某個具體頁面
+                    參數：
+                        正數：前進幾個歷史紀錄
+                        負數：後退幾個歷史紀錄
+
+            3.屬性：
+                (1) length：返回當前窗口歷史列表的URL數量
+
+         */
+    </script>
+
+</head>
+<body>
+    <input type="button" id="btn" value="獲取歷史紀錄個數">
+    <a href="09_History對象2.html">09頁面</a>
+    <input type="button" id="forward" value="前進">
+    <script>
+
+        //1.獲取按鈕
+        var btn = document.getElementById("btn");
+        //2.綁定點擊事件
+        btn.onclick = function () {
+            //3.獲取當前窗口歷史紀錄個數
+            var length = history.length;
+            alert(length);
+        }
+
+
+        //1.獲取按鈕
+        var forward = document.getElementById("forward");
+        //2.綁定點擊事件
+        forward.onclick = function () {
+            //3.前進
+            //history.forward();
+            history.go(1);
+        }
+
+    </script>
+
+
+</body>
+</html>

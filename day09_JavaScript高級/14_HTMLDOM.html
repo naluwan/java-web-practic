@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>HTMLDOM</title>
+</head>
+<body>
+    <div id="div1">
+        div
+    </div>
+
+<script>
+    var div = document.getElementById("div1");
+    var innerHTML = div.innerHTML;
+    //alert(innerHTML);
+
+    //div標籤中替換一個文本書入框
+    //div.innerHTML = "<input type='text'>";
+
+    //div標籤中加入一個文本書入框
+    div.innerHTML += "<input type='text'>";
+
+</script>
+
+
+
+</body>
+</html>

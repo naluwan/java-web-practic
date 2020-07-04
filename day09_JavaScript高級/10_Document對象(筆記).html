@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>Document對象</title>
+
+    <script>
+        /*
+            DOM：
+                概念：Document Object Model 文檔對象模型
+                    * 將標記語言文檔的各個組成部分，封裝為對象，可以使用這些對象，對標記語言文檔進行CRUD的動態操作
+
+                W3C DOM 標準被分為3個不同的部分
+                    * 核心 DOM：針對任何結構化文的的標準模型
+                        (1) Document：文檔對象
+                        (2) Element：元素對象
+                        (3) Attribute：屬性對象
+                        (4) Text：文本對象
+                        (5) Comment：註釋對象
+
+                        (6) Node：節點對象，其他5個的父對象
+                    * XML DOM：針對XML文檔的標準模型
+                    * HTML DOM：針對HTML文檔的標準模型
+
+              核心DOM模型：
+                * Document：文檔對象
+                    1.創建(獲取)：在html dom模型中可以使用window對象來獲取
+                        (1) window.document
+                        (2) document
+                    2.方法：
+                        (1) 獲取Elenmet對象：
+                            * getElementById()：根據id屬性值獲取元素對象，id屬性值一般唯一
+                            * getElementsByTagName()：根據元素名稱獲取元素對象們，返回值是一個陣列
+                            * getElementsByClassName()：根據Class屬性值獲取元素對象們，返回值是一個陣列
+                            * getElementByName()：根據name屬性值獲取元素對象們，返回值是一個陣列
+
+                        (2) 創建其他DOM對象：
+                            * creatAttribute(name)：創建擁有指定名稱的屬性節點，並返回新的Attr對象
+                            * createComment()：創建註釋節點
+                            * createElement()：創建元素節點
+                            * createTextNode()：創建文本節點
+
+                    3.屬性：
+
+                * Element：元素對象
+                     1.獲取/創建：通過document來獲取和創建
+                     2.方法：
+                        (1) removeAttribute()：刪除屬性
+                        (2) setAttribute()：設置屬性
+
+                * Node：節點對象，其他5個的父對象
+                    * 特點＂所有dom對象都可以被視為一個節點
+                    * 方法：
+                        (1) CRUD dom樹：
+                            * appendChild()：向節點的子節點列表的結尾添加新的子節點
+                            * removeChold()：刪除(並返回)當前節點的指定子節點
+                            * replaceChild()：用新節點替換一個子節點
+                    * 屬性：
+                        (1) parentNode：返回節點的父節點
+            HTML DOM：
+                1.標籤體的設置和獲取：innerHTML
+                2.使用html元素對象的屬性
+                3.控制樣式
+                    (1) 使用元素的style屬性來設置
+                        ex：
+                             //修改樣式方式1
+                             div1.style.border = "1px solid red";
+
+                             div1.style.width = "200px";
+
+                             //font-size-->fontsize
+                             div1.style.fontSize = "20px";
+                    (2) 提前定義好累選擇棄的樣式，過元素的className屬性來設置其class屬性值
+                        <style>
+                            .d1{
+                                border: 1px solid red;
+                                width: 100px;
+                                height: 100px;
+                            }
+
+                            .d2{
+                                border: 1px solid blue;
+                                width: 200px;
+                                height: 200px;
+                            }
+                        </style>
+
+                         var div2 = document.getElementById("div2");
+                         div2.onclick = function () {
+                            div2.className = "d1";
+                         }
+
+         */
+    </script>
+</head>
+<body>
+
+    <div id="div1">div1</div>
+    <div id="div2">div2</div>
+    <div id="div3">div3</div>
+
+    <div class="cls1">div4</div>
+    <div class="cls1">div5</div>
+
+    <input type="text" name="username">
+
+<script>
+
+    //1.getElementsByTagName()：根據元素名稱獲取元素對象們，返回值是一個陣列
+    var divs = document.getElementsByTagName("div");
+    //alert(divs.length);
+
+    //2.getElementsByClassName()：根據Class屬性值獲取元素對象們，返回值是一個陣列
+    var div_cls = document.getElementsByClassName("cls1");
+    //alert(div_cls.length);
+
+    //3.getElementByName()：根據name屬性值獲取元素對象們，返回值是一個陣列
+    var ele_userment = document.getElementsByName("username");
+    //alert(ele_userment.length);
+
+    var table = document.createElement("table");
+    alert(table);
+
+</script>
+
+</body>
+</html>

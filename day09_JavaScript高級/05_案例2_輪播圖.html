@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>輪播圖</title>
+
+
+
+
+</head>
+<body>
+    <img id="img" src="img/ts1.jpg" width="100%">
+
+
+
+
+
+
+
+    <script>
+        /*
+            分析：
+                1.在頁面上使用img標籤顯示圖片
+                2.定義一個方法，修改圖片對象的src屬性
+                3.定義一個定時器，每隔3秒調用方法一次
+         */
+
+        //修改圖片src屬性
+        var num = 1;
+        function fun(){
+            num++;
+            //判斷num是否大於3
+            if(num > 3){
+                num = 1;
+            }
+
+            var img = document.getElementById("img");
+            img.src = "img/ts"+num+".jpg";
+        }
+
+        //2.定義定時器
+        setInterval(fun,3000);
+
+
+    </script>
+
+</body>
+</html>

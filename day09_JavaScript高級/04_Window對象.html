@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>Window對象</title>
+
+
+
+
+</head>
+<body>
+
+    <input type="button" value="打開窗口" id="openBtn">
+    <input type="button" value="關閉窗口" id="closeBtn">
+
+    <script>
+        /*
+            Window：窗口對象
+                1.創建：
+
+                2.方法：
+                    (1) 與彈出窗口有關的方法。
+                        alert()：顯示帶有一段消息和一個確認按鈕的警告框
+                        confirm()：顯示帶有一段消息以及確認按鈕和取消按鈕的對話框
+                            *如果用戶點擊確定按鈕，則方法返回true
+                            *如果用戶點擊取消按鈕，則方法返回false
+                        prompt()：顯示可提示用戶輸入的對話框
+                            *返回值：獲取用戶輸入的值
+                    (2) 與打開和關閉有關的方法
+                        close()：關閉瀏覽窗口
+                            *誰調用，就關誰
+                        open()：打開一個新的瀏覽窗口
+                            *會返回一個新的Window對象
+                    (3) 與定時器有關的方式
+                        setTimeout()：在指定的毫秒數後調用函數或計算表達式
+                            參數：
+                                1.js代碼或方法對象
+                                2.毫秒值
+                            返回值：唯一標識，用於取消定時器
+                        clearTimeout()：取消由setTimeout()方法設置的timeout
+
+                        setInterval()：按照指定的週期(以毫秒計)來調用函數或計算表達式
+                        clearInterval()：取消由setInterval()設置的timeout
+
+                3.屬性：
+                    (1) 獲取其他BOM對象
+                        History
+                        Location
+                        Navigator
+                        Screen
+                    (2) 獲取DOM對象
+                        document
+
+                4.特點：
+                    (1) Window對象不需要創建可以直接使用Window使用。Window.方法名();
+                    (2) Window引用可以省略。 方法名();
+
+         */
+
+        // alert("hello window");
+        // window.alert("hello naluwan");
+
+        // var flag = confirm("你確定要離開嗎?");
+        //
+        // if(flag){
+        //     //退出操作
+        //
+        //     alert("歡迎再次光臨!")
+        // }else{
+        //     //提示
+        //
+        //     alert("手別抖......")
+        // }
+
+        // //輸入框
+        // var result = prompt("請輸入用戶名稱：");
+        // alert(result);
+
+       //  //打開一個新窗口
+       // var openBtn = document.getElementById("openBtn");
+       // var newWindow
+       // openBtn.onclick = function () {
+       //      //打開新窗口
+       //     newWindow = open("https://www.google.com/");
+       // }
+       //
+       //  //關閉一個新窗口
+       //  var closeBtn = document.getElementById("closeBtn");
+       //  closeBtn.onclick = function () {
+       //      //關閉新窗口
+       //      newWindow.close();
+       //  }
+
+        //1次性定時器
+        //setTimeout("fun()",2000);
+        //var timeOut1 = setTimeout(fun,2000);
+        //clearTimeout(timeOut1);
+        // function fun() {
+        //     alert('boom~~~~');
+        // }
+        //
+        // //循環定時器
+        // var timeOut2 = setInterval(fun,2000);
+        // clearInterval(timeOut2);
+
+        //獲取history
+        // var h1 = window.history;
+        // var h2 = history;
+        //
+        // alert(h1);
+        // alert(h2);
+
+        var openBtn = window.document.getElementById("openBtn");
+        alert(openBtn);
+        //document.getElementById("");
+    </script>
+</body>
+</html>

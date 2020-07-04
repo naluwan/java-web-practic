@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>案例1_電燈開關</title>
+
+
+</head>
+<body>
+
+<img id="light" src="img/off.jpg">
+
+<script>
+/*
+    1.分析
+        (1) 獲取圖片對象
+        (2) 綁定點擊事件
+        (3) 每次點擊切換圖片
+            *規則：如果燈是開的 on,切換圖片為 off(如果燈是關的 off,切換圖片為 on)
+            *使用標記flag來完成
+*/
+    //1.獲取圖片對象
+    var light = document.getElementById("light");
+
+    var flag =false;//代表燈是關的，off圖片
+
+    //2.綁訂單擊事件
+    light.onclick = function () {
+        if(flag){//判斷如果燈是開的，則關掉
+            light.src = "img/off.jpg"
+            flag = false;
+        }else{//如果燈是關的，則打開
+            light.src = "img/on.jpg"
+            flag = true;
+        }
+    }
+
+
+</script>
+</body>
+</html>

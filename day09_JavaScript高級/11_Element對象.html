@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>Element對象</title>
+</head>
+<body>
+
+<a>點我是一下</a>
+<input type="button" value="設置屬性" id="btn_set">
+<input type="button" value="刪除屬性" id="btn_remove">
+
+<script>
+
+    //獲取btn
+    var btn_set = document.getElementById("btn_set");
+    btn_set.onclick = function () {
+        //1.獲取a標籤
+        var element_a = document.getElementsByTagName("a")[0];
+        element_a.setAttribute("href", "https://www.google.com");
+    }
+
+    //獲取btn
+    var btn_remove = document.getElementById("btn_remove");
+    btn_remove.onclick = function () {
+        //1.獲取a標籤
+        var element_a = document.getElementsByTagName("a")[0];
+        element_a.removeAttribute("href");
+    }
+
+</script>
+</body>
+</html>

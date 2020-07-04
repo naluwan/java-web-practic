@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang= "tw">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+</head>
+<body>
+
+    <img id="light" src="img/off.jpg">
+    <h1 id="title">那魯灣</h1>
+
+    <script>
+        //通過id獲取元素對象
+        //因為Script標籤執行順序和寫的位置有關，如果寫在上面，那要獲取的對象還沒產生，會產生null值
+        //所以建議寫在body的最後面
+        var light = document.getElementById("light");
+        alert("我要換圖片了!!");
+        light.src = "img/on.jpg"
+
+        // //1.獲取h1標籤對象
+        // var title = document.getElementById("title");
+        // alert("我要換內容了!!");
+        // //2.修改內容
+        // title.innerHTML = "那魯灣DOM的第一次練習"
+
+
+    </script>
+</body>
+</html>

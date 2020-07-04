@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>Location對象</title>
+    <script>
+        /*
+            Location：地址欄對象
+            1.創建(獲取)：
+                (1) window.location
+                (2) location
+
+            2.方法：
+                (1) reload()：重新加載當前文檔
+
+            3.屬性：
+                (1) href：設置或返回完整的URL
+
+         */
+    </script>
+
+
+
+
+</head>
+<body>
+
+<input type="button" id="btn" value="刷新">
+
+<input type="button" id="googlebtn" value="去google">
+
+<script>
+
+    //reloda方法，定義一個按鈕，點一按鈕，刷新當前頁面
+    //1.獲取按鈕
+    var btn = document.getElementById("btn");
+    //綁定點擊事件
+    btn.onclick = function () {
+        //刷新頁面方法
+        location.reload();
+    }
+
+    //獲取href
+    var href = location.href;
+    //alert(href);
+    //點擊按鈕，訪問www.google.com首頁
+    //1.獲取按鈕
+    var googlebtn = document.getElementById("googlebtn");
+    //綁定點擊事件
+    googlebtn.onclick = function () {
+        //訪問www.google.com首頁
+        location.href = "https://www.google.com";
+    }
+
+</script>
+
+</body>
+</html>

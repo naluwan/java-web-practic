@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>事件綁定</title>
+
+
+</head>
+<body>
+
+<img id="light" src="img/off.jpg" onclick=fun();>
+<br>
+
+<img id="light2" src="img/off.jpg" >
+
+<script>
+
+    function fun() {
+        alert("我被點了!!");
+        alert("我又被點了!!");
+    }
+
+    function fun2() {
+        alert("我怎麼被點了!?");
+    }
+
+    //1.獲取light2對象
+    var light2 = document.getElementById("light2");
+    //2.綁定事件
+    light2.onclick = fun2;
+
+</script>
+</body>
+</html>

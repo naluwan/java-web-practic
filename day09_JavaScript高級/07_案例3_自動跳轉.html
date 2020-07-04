@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>自動跳轉</title>
+    <style>
+        p{
+            text-align: center;
+        }
+
+        span{
+            color: #FF0000;
+        }
+    </style>
+
+</head>
+<body>
+
+<P>
+    <span id="time">5</span>秒之後，自動跳轉到首頁......
+</P>
+
+<script>
+    /*
+        分析：
+            1.顯示頁面效果 <p>
+            2.到計時讀秒效果實現
+                (1) 定義一個方法，獲取span標籤，修改span標籤體內容，時間--
+                (2) 定義一個定時器，1秒執行一次該方法
+            3.在方法中判斷時間如果<=0，則跳轉到首頁
+     */
+    //2.顯示到計時效果
+    var second = 5;
+    var time = document.getElementById("time");
+    //(1) 定義一個方法，獲取span標籤，修改span標籤體內容，時間--
+    function showTime() {
+        second--;
+        if(second <= 0){
+            location.href = "https://www.google.com";
+        }
+        time.innerHTML = second + "";
+    }
+
+    //(2) 定義一個定時器，1秒執行一次該方法
+    setInterval(showTime,1000);
+
+
+</script>
+</body>
+</html>
