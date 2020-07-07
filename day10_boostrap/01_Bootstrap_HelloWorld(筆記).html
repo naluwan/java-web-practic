@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap HelloWorld</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="js/bootstrap.min.js"></script>
+
+  </head>
+<body>
+<h1>你好，世界！</h1>
+
+    <script>
+
+        /*
+
+            Bootstrap：
+                1.概念一個前蹲開發的框架，Bootstrap，來自Twitter，是目前很受歡迎的前蹲框架。Bootstrap是基於HTML、CSS、JavaScript的，
+                  簡潔靈活，使得web開發更加快捷。
+                    * 框架：一個半成品軟件，開發人員可以在框架基礎上，再進行開發、簡化編碼。
+                    * 好處：
+                        (1) 定義很多的css樣式和js插件，開發人員直接可以使用這些樣式和插件得到豐富的頁面效果
+                        (2) 響應式布局
+                            * 同一套頁面可以兼容不同分辨率的設備
+
+                2.快速入門
+                    1.下載Bootstrap
+                    2.在項目中將這三個文件夾複製
+                    3.創建html頁面，引入必要的資源文件
+
+
+            響應式布局
+                * 同一套頁面可以兼容不同分辨率的設備
+                * 實現：依賴於柵格系統：將一航平均分成12個格子，可以指定元素占幾個格子
+                * 步驟：
+                    1.定物容器，相當於之前的table
+                        * 容器：
+                            (1) container：兩邊留白
+                            (2) container-fluid：每一種設備都是100%寬度
+                    2.定義行，相當於之前的tr 樣式：row
+                    3.定義元素，相當於之前的td，指定該元素在不同的設備上，所占的格數 樣式：col-設備代號-格子數目
+                        * 設備代號：
+                            (1) xs：超小屏幕 手機 (<768px)：col-xs-12
+                            (2) sm：小屏幕 平板 (≥768px)
+                            (3) md：中等屏幕 桌面顯示器(筆電) (≥992px)
+                            (4) lg：大屏幕 大桌面顯示器(桌電) (≥1200px)
+
+                    * 注意：
+                        1.一行中如果格子數目超過12，則超出部分自動換行
+                        2.柵格類屬性可以向上兼容，柵格類適用於與屏幕寬度大於或等於分界點大小的設備
+                        3.如果使用設備的寬度小於設置柵格類屬性的設備代碼的最小值，會一個元素占滿一整行
+
+            CSS樣式和JS插件
+                全局CSS樣式：
+                    * 按鈕：class="btn btn-default"
+                    * 圖片：
+                        (1) class="img-responsive"：圖片在任意尺寸都占100%
+                        (2) 圖片形狀
+                            * <img src="..." alt="..." class="img-rounded">：方形
+                            * <img src="..." alt="..." class="img-circle">：圓形
+                            * <img src="..." alt="..." class="img-thumbnail">：相框
+                    * 表格：
+                        (1) table
+                        (2) table-bordered：邊框
+                        (3) table-hover：移動效果
+                    * 表單：
+                        * 給表單項添加：class="from-control"
+
+                組件：
+                    * 導航條：
+                    * 分頁：
+
+                插件：
+                    * 輪播圖：
+
+         */
+    </script>
+
+</body>
+</html>
