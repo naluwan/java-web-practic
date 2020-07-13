@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE students SYSTEM "student.dtd"><!--引入外部dtd檔-->
+
+<!--    在xml文檔中寫dtd
+        <!DOCTYPE students[
+        <!ELEMENT students (student*) >
+        <!ELEMENT student (name,age,sex)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT age (#PCDATA)>
+        <!ELEMENT sex (#PCDATA)>
+        <!ATTLIST student number ID #REQUIRED>
+        ]>
+       -->
+<!--
+    * 約束：規定xml文檔的書寫規則
+        * 作為框架的使用者(程序員)：
+            (1) 能夠在xml中引入約束文檔
+            (2) 能夠簡單的讀懂約束文章
+
+        * 分類：
+            (1) DTD：一種簡單的約束技術
+            (2) Schema：一種複雜的約束技術
+
+        * DTD：
+            (1) 引入dtd文檔到xml文檔中
+                * 內部dtd：將約束規則定義在xml文檔中
+                * 外部dtd：將約束規則定義在外部的dtd文件中
+                    * 本地：<!DOCTYPE 根標籤名 SYSTEM "dtd文件的位置">
+                    * 網路：<!DOCTYPE 根標籤名 PUBLIC "dtd文件名子" "dtd文件位置的URL">
+-->
+
+<students>
+    <student number="s001">
+        <name>naluwan</name>
+        <age>18</age>
+        <sex>male</sex>
+    </student>
+
+    <student number="s002">
+        <name>rita</name>
+        <age>12</age>
+        <sex>female</sex>
+    </student>
+</students>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" standalone='no' ?>
+<!--<?xml-stylesheet type="text/css" href="a.css" ?>-->
+<!--
+	XML：
+		1.概念：Extensible Markup Language 可擴展標記語言
+			* 可擴展：標籤都是自定義的。<user> <age> <gender>
+
+			* 功能：
+				* 存儲數據：
+					(1) 配置文件
+					(2)	在網路中傳輸
+
+			* XML和HTML的區別
+				(1) XML標籤都是自定義的，HTML標籤都是預定義
+				(2) XML的語法嚴謹，HTML語法鬆散
+				(3) XML是存儲數據，HTML是展示數據
+
+			* W3C：萬維網聯盟
+
+		2.語法：
+			* 基本語法：
+				(1) XML文檔的副檔名 .xml
+				(2) XML第一行必須定義為文檔聲明 <?xml version='1.0' ?>
+				(3) XML文檔中有且僅有一個根標籤
+				(4) 屬性值必須使用引號(單雙都可)引起來
+				(5) 標籤必須正確關閉
+				(6) XML標籤名稱區分大小寫
+			* 快速入門：
+			<?xml version='1.0' ?>
+			<users>
+				<user id='1'>
+					<name>那魯灣</name>
+					<age>30</age>
+					<gender>男</gender>
+				</user>
+
+				<user id='2'>
+					<name>簡碩亨</name>
+					<age>32</age>
+					<gender>男</gender>
+				</user>
+			</users>
+
+			* 組成部分：
+				* 文檔聲明：
+					(1) 格式：<?xml 屬性列表 ?>
+					(2)屬性列表：
+						* version：版本號(必須的屬性)
+						* encoding：編碼方式。告知解吸引擎當前文檔使用的字符集。默認值：IOS-8859-1
+						* standalone：是否獨立
+							* 取值：
+								* yes：不依賴其他文件
+								* no：依賴其他文件
+
+				* 指令(了解)：結合CSS的
+				    * <?xml-stylesheet type="text/css" href="a.css" ?>
+
+				* 標籤：標籤名稱自定義的
+				    * 規則：
+				        (1) 名稱可以包含字母、數字及其他的字符
+				        (2) 名稱不能以數字或者標點符號開頭
+				        (3) 名稱不能以字母XML(xml或者Xml 等等)開始
+				        (4) 名稱不能包含空格
+
+				* 屬性：id屬性值唯一
+
+				* 文本：
+				    * CDATA區：在該區域中的數據會被原樣展示
+				        * 格式：<![CDATA[數據]]>
+
+			* 約束：規定xml文檔的書寫規則
+			    * 作為框架的使用者(程序員)：
+			        (1) 能夠在xml中引入約束文檔
+			        (2) 能夠簡單的讀懂約束文章
+
+			    * 分類：
+			        (1) DTD：一種簡單的約束技術
+			        (2) Schema：一種複雜的約束技術
+
+			    * DTD：
+                    (1) 引入dtd文檔到xml文檔中
+                        * 內部dtd：將約束規則定義在xml文檔中
+                        * 外部dtd：將約束規則定義在外部的dtd文件中
+                            * 本地：<!DOCTYPE 根標籤名 SYSTEM "dtd文件的位置">
+                            * 網路：<!DOCTYPE 根標籤名 PUBLIC "dtd文件名子" "dtd文件位置的URL">
+
+                * Schema：
+                    * 引入：
+                        (1)填寫xml文檔的根元素
+                        (2)引入xsi前綴。 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        (3)引入xsd文件命名空間。 xsi:schemaLocation="http://www.itcast.cn/xml student.xsd"
+                        (4)為每一個xsd約束聲明一個前綴，作為標識 xmlns="http://www.itcast.cn/xml"
+
+                        <students xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                  xsi:schemaLocation="http://www.itcast.cn/xml student.xsd"
+                                  xmlns="http://www.itcast.cn/xml"
+                                    >
+
+        3.解析：操作xml文檔，將文檔中的數據讀取到內存中
+            * 操作xml文檔：
+                (1) 解析(讀取)：將文檔中的數據讀取到內存中
+                (2) 寫入：將內存中的數據保存到xml文檔中，持久化存儲
+
+            * 解析xml的方法：
+                (1) DOM：將標記語言文檔一次性加載進內存，在內存中會形成一顆DOM樹
+                    * 優點：操作方便，可以對文檔進行CRUD的所有操作
+                    * 缺點：占內存
+                (2) SAX：逐行讀取，基於事件驅動
+                    * 優點：不占內存
+                    * 缺點：只能讀取，不能增刪改
+
+            * xml常見的解析器：
+                (1) JAXP：sun公司提供的解析器，支持dom和sax兩種思想
+                (2) DOM4J：一款非常優秀的解析器
+                (3) Jsoup：Jsoup是一款java的html解析器，可直接解析某個URL地址、HTML文本內容，它提供了一套非常省力的API，
+                           可以通過DOM、CSS以及類似於jQuery的操作方式來取出和操作數據
+                (4) PULL：Android操作系統內置的解析器，sax方式的
+
+            * Jsoup：Jsoup是一款java的html解析器，可直接解析某個URL地址、HTML文本內容，它提供了一套非常省力的API，
+                           可以通過DOM、CSS以及類似於jQuery的操作方式來取出和操作數據
+                * 快速入門：
+                    * 步驟：
+                        (1) 導入jar包
+                        (2) 獲取Document對象
+                        (3) 獲取對應的標籤Element對象
+                        (4) 獲取數據
+
+                * 代碼：
+                    //2.獲取Document對象，根據xml文檔獲取
+                    //2.1獲取student.xml的path
+                    String path = JsoupDemo1.class.getClassLoader().getResource("student.xml").getPath();
+                    //2.2解析xml文檔，加載文檔進內存，獲取dom樹===>Document
+                    Document document = Jsoup.parse(new File(path),"utf-8");
+                    //3.獲取元素對象 Elenment
+                    Elements elements = document.getElementsByTag("name");
+
+                    System.out.println(elements.size());
+                    //3.1獲取第一個name的element對象
+                    Element element = elements.get(0);
+                    //3.2獲取數據
+                    String name = element.text();
+                    System.out.println(name);
+
+           * 對象的使用：
+            (1) Jsoup：工具類，可以解析html或xml文檔，返回Document
+                * parse：解析html或xml文檔，返回Document
+                    * parse(File in, String charsetName)：解析html或xml文檔
+                    * parse(String html)：解析html或xml字符串
+                    * parse(URL url, int timeoutMillis)：通過網路路徑來獲取指定的html或xml的文檔對象
+            (2) Document：文檔對象，代表內存中的dom樹
+                * 獲取Element對象
+                    (1) getElementsByTag(String tagName)：根據標籤名稱獲取元素對象集合
+                    (2) getElementsByAttribute(String key)：根據屬性名稱獲取元素對象集合
+                    (3) getElementsByAttributeValue(String key, String valus)：根據對應的屬性名和屬性值獲取元素對象集合
+                    (4) getElementById(String id)：根據id屬性值獲取唯一的element對象
+            (3) Elements：元素Element對象的集合，可以當作ArryList<ELement>來使用
+            (4) Element：元素對象
+                1.獲取子元素對象
+                    (1) getElementsByTag(String tagName)：根據標籤名稱獲取元素對象集合
+                    (2) getElementsByAttribute(String key)：根據屬性名稱獲取元素對象集合
+                    (3) getElementsByAttributeValue(String key, String valus)：根據對應的屬性名和屬性值獲取元素對象集合
+                    (4) getElementById(String id)：根據id屬性值獲取唯一的element對象
+                2.獲取屬性值
+                    (1) attr(String key)：根據屬性名稱獲取屬性值
+                3.獲取文本內容
+                    (1) String text()：獲取文本內容
+                    (2) Strimg heml()：獲取標籤體的所有內容(包括字標籤的字符串內容)
+            (5) Node：節點對象
+                * 是Document和Element的父類
+
+      * 快捷查詢方式：
+        1.selector：選擇器
+            * 使用方法：Element  select(String cssQuery)
+                * 語法：參考selector類中定義的語法
+        2.XPath：XPath即為XML路徑語言，他是一種用來確定XML(標準通用標記語言的子集)文檔中某部分位置的語言
+            * 使用Jsoup的XPath需要額外導入jar包
+            * 查詢w3cshool參考手冊，使用XPath的語法來完成查詢
+ -->
+<users>
+    <user id='1'>
+        <name>那魯灣</name>
+        <age>30</age>
+        <gender>男</gender>
+    </user>
+
+    <user id='2'>
+        <name>簡碩亨</name>
+        <age>32</age>
+        <gender>男</gender>
+    </user>
+
+    <code>
+
+        <!--if(a &lt; b &amp;&amp; a &gt; c){}-->
+        <![CDATA[
+            if(a < b && a > c) {}
+        ]]>
+    </code>
+</users>
