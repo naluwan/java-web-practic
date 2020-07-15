@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tomcat介紹</title>
+</head>
+<body>
+<script>
+    /*
+        1.web相關概念回顧
+        2.web服務器軟件：tomcat
+        3.Servlet入門學習
+
+        web相關概念回顧
+            1.軟件架構
+                (1) C/S；客戶端/服務器端
+                (2) B/S：瀏覽器/服務器端
+
+            2.資源分類
+                (1) 靜態資源：所有用戶訪問後，得到的結果都是一樣的，稱為靜態資源，靜態資源可以直接被瀏覽器解析。
+                    如：html,css,JavaScript
+                (2) 動態資源：每個用戶訪問後，得到的結果可能不一樣，稱為動態資源，動態資源被訪問後，需要先轉換為靜態資源，再返回給瀏覽器。
+                    如：servlet/jsp,php,asp....
+
+            3.網路通信三要素
+                (1) IP：電子設備(計算機)在網路中的唯一標識。
+                (2) 端口：應用程序在計算機中的唯一標識。 0 ~ 65536
+                (3) 傳輸協議：訂了數據傳輸的規則
+                    a. 基礎協議：
+                        I.tcp：安全協議，三次握手，速度稍慢。
+                        II.udp：不安全協議，速度快。
+
+        web服務器軟件：
+            * 服務器：安裝服務器軟件的計算機
+            * 服務器軟件：接收用戶的請求，處理請求，做出響應
+            * web服務器軟件：接收用戶的請求，處理請求，做出響應
+                * 在web服務器軟件中，可以部屬web項目，讓用戶過瀏覽器來訪問這些項目
+                * web容器
+
+            * 常見的java相關的web服務器軟件：
+                * webLogic：oracle公司，大型的JavaEE服務器，支持所有的JavaEE規範，收費的。
+                * webSphere：IBM公司，大型的JavaEE服務器，支持所有的JavaEE規範，收費的。
+                * JBOSS：JBOSS公司，大型的JavaEE服務器，支持所有的JavaEE規範，收費的。
+                * Tomcat：Apache基金組織，中小型的JavaEE服務器，僅僅支持少量的JavaEE規範servlet/jsp。開源的，免費的。
+
+            * JavaEE：Java語言在企業級開發中使用的技術規範的總和，一共規定13項大的規範
+
+            * Tomcat：web服務器軟件
+                1.下載：http://tomcat.apache.org/
+                2.安裝：解壓縮即可
+                    * 注意：安裝目錄建議不要有中文和空格
+                3.卸載：刪除目錄即可
+                4.啟動：
+                    * bin/startup.bat，雙擊檔案即可運行
+                    * 訪問：瀏覽器輸入：http://localhost:8080 訪問自己(查詢自己ip，cmd 輸入ipconfig)
+                                    http：//別人的ip:8080 訪問別人
+
+                    * 可能遇到的問題：
+                        (1) 黑窗口閃爍即關：
+                            * 原因：沒有正確配置JAVA_HOME環境變量
+                            * 解決方案：正確配置JAVA_HOME環境變量
+
+                        (2) 啟動報錯：
+                            I.暴力：找到占用端口號，並且找到對應的進程，關閉該進程
+                                * cmd 輸入 netstat -ano
+                            II.溫柔：修改自身的端口號
+                                * conf/server.xml
+                                * <Connector port="8080" protocol="HTTP/1.1"
+                                    connectionTimeout="20000"
+                                    redirectPort="8443" />
+                                * 一般會將tomcat的默認端口號修改為80。80端口號是http協議的默認端口號。
+                                    * 好處：在訪問時，不用輸入端口號
+
+                5.關閉：
+                    (1) 正常關閉：
+                        * bin/shutdown.bat
+                        * ctrl + c
+                    (2) 強制關閉：
+                        * 點擊啟動窗口的X
+
+                6.配置：
+                    * 部屬項目的方式：
+                        (1) 直接將項目放到webapps目錄下即可
+                            * /hello：項目的訪問路徑-->虛擬目錄
+                            * 簡化部屬：將項目打包成war包，在將war包放置到webapps目錄下。
+                                * war包會自動解壓縮
+
+                        (2) 配置conf/server.xml文件
+                            在<HOST>標籤體中配置
+                            <Context docBase="D:\hello" path="/haha" />
+                            * docBase：項目存放的路徑
+                            * path：虛擬目錄
+
+                        (3) 在conf\Catalina\localhost創建任意名稱的xml文件，在文件中編寫
+                            <Context docBase="D:\hello" />
+                            * 虛擬目錄：xml文件的名稱
+
+                    * 靜態項目和動態項目：
+                        * 目錄結構
+                            * java動態項目的目錄結構：
+                                -- 項目的跟目錄
+                                    -- WEB-INF目錄：
+                                        -- web.xml：web項目的核心配置文件
+                                        -- classes目錄：放置字節碼文件的目錄
+                                        -- lib目錄：放置依賴的jar包
+
+                    * 將Tomcat集成到IDEA中，並且創建JavaEE的項目，部屬項目。
+
+       Servlet：server applet
+        * 概念：運行在服務器端的小程序
+            * Servlet就是一個接口，定義了Java類被瀏覽器訪問到(tomcat識別)的規則。
+            * 將來我們自定物一個類，實現Servlet接口，複寫方法。
+
+        * 快速入門：
+            1.創建JavaEE項目
+            2.定義一個類，實現servlet接口
+                * public class ServletDemo1 implements Servlet
+            3.實現接口中的抽象方法
+            4.配置servlet
+                在web.xml中配置
+                <!--配置Servlet-->
+                <servlet>
+                    <servlet-name>demo1</servlet-name>
+                    <servlet-class>cn.itcast.web.servlet.ServletDemo1</servlet-class>
+                </servlet>
+
+                <servlet-mapping>
+                    <servlet-name>demo1</servlet-name>
+                    <url-pattern>/demo1</url-pattern>
+                </servlet-mapping>
+
+                * Servlet方法註解
+                    1.public void init(ServletConfig servletConfig) throws ServletException
+                        * 初始化方法
+                        * 在Servlet被創建時，執行，只會執行一次
+                    2.public ServletConfig getServletConfig()
+                        * 獲取ServletConfig對象
+                        * ServletConfig：Servlet的配置對象
+                    3.public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException
+                        * 提供服務方法
+                        * 每一次Servlet被訪問時，執行，執行多次
+                    4.public String getServletInfo()
+                        * 獲取Servlet的信息，本版、作者等等...
+                    5.public void destroy()
+                        * 銷毀方法
+                        * 在服務器正常關閉時，執行，執行一次
+
+            * Servlet執行原理：
+                1.當服務器接收到庫戶端瀏覽器的請求後，會解析請求URL路徑，獲取訪問的Servlet的資源路徑
+                2.查找web.xml文件，是否有對應的<url-pattern>標籤體內容
+                3.如果有，則再找到對應的<servlet-class>全類名
+                4.tomcat會將字節碼文件加載進內存，並創建其對象
+                5.調用其方法
+
+            * Servlet生命週期：
+                1.被創建：執行init方法，只執行一次
+                    * Servlet什麼時候被創建?
+                        * 默認情況下，第一次被訪問時，Servlet被創建
+                        * 可以配置執行Servlet的創建時機
+                            * 指定Servlet的創建時機
+                            * 在<servlet>標籤下配置
+                                1.第一次被訪問時，創建
+                                    * <load-on-startup>的值為負數
+                                2.在服務器啟動時，創建
+                                    * <load-on-startup>的值為0或正整數
+
+                    * Servlet的init方法，只執行一次，說明一個Servlet在內存中只存在一個對象，Servlet是單例的
+                        * 多個用戶同時訪問時，可能存在線程安全問題
+                        * 解決方案：盡量不要在Servlet中定義成員變量，既使定義成員變量，也不要對其修改值
+
+                2.提供服務：執行service方法，執行多次
+                    * 每次訪問Servlet時，Service方法都會被調用一次
+                3.被銷毀：執行destroy方法，只執行一次
+                    * Servlet被銷毀時執行，服務器關閉時，Servlet被銷毀
+                    * 只有服務器正常關閉時，才會執行destroy方法
+                    * destroy方法在Servlet被銷毀之前執行，一般用時釋放資源
+
+            * Servlet3.0：
+                * 好處：
+                    * 支持註解配置，可以不需要web.xml
+
+                * 步驟：
+                    1.創建JavaEE項目，選擇servlet的版本3.0以上，可以不創建web.xml
+                    2.定義一個類，實現Servlet接口
+                    3.複寫方法
+                    4.在類上使用@WebServlet在類上使用@webServlet，進行配置
+                        * @WebServlet("Servlet資源路徑")
+
+        IDEA與tomcat的相關配置
+            1.IDEA會與每一個tomcat部屬的項目單獨獨立一份配置文件
+                * 查看控制台log：Using CATALINA_BASE: "C:\Users\User\AppData\Local\JetBrains\IntelliJIdea2020.1\tomcat\_day09_JavaScript高級"
+
+            2.工作空間項目    和   tomcat部屬的web項目
+                * tomcat真正訪問的是"tomcat部屬的web項目"，"tomcat部屬的web項目"對應著"工作空間項目"的web目錄下的所有資源
+                * WEB-INF目錄下的資源無法被瀏覽器直接訪問
+                * tomcat斷點調試(breakpoint debug)：使用小蟲子啟動debug啟動
+
+    */
+
+</script>
+</body>
+</html>
+
+
