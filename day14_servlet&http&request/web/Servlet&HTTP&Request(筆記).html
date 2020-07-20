@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Servlet&HTTP&Request</title>
+</head>
+<body>
+<script>
+    /*
+        1.Servlet
+            (1)概念
+            (2)步驟
+            (3)執行原理
+            (4)生命週期
+            (5)Servlet3.0 註解配置
+            (6)Servlet的體系結構
+                Servlet -- 接口
+                    |
+                GenericServlet -- 抽象類
+                    |
+                HTTPServlet -- 抽象類
+
+                * GenericServlet：將Servlet接口中其他的方法做了默認空實現，只將service()方法作為抽象
+                    * 將來定義Servlet類時，可以繼承GenericServlet，實現service()方法即可
+
+                * HTTPServlet：對HTTP協議的一種封裝，簡化操作
+                    1.定義繼承HTTPServlet
+                    2.複寫doGet/doPost方法
+            (7)Servlet相關配置
+                1.urlPatterns：Servlet訪問路徑
+                    * 一個Servlet可以定義多個訪問路徑 ： @WebServlet({"/d4","/dd4","/ddd4"})
+                    * 路徑定義規則：
+                        1./XXX
+                        2./XXX/XXX：多層路徑，目錄結構
+                        3.*.do
+        2.HTTP協議
+            * 概念：Hyper Text Transfer Protocol 超文本傳輸協議
+                * 傳輸協議：定義了客戶端和服務器端通信時，發送數據的格式
+                * 特點：
+                    (1)基於TCP/IP的高級協議
+                    (2)默認端口號：80
+                    (3)基於請求/響應模型的，一次請求對應一次響應
+                    (4)無狀態的：每次請求之間相互獨立，不能交互數據
+            * 歷史版本：
+                * 1.0：每一次請求響應都會建立新的連接
+                * 1.1：重複使用連接
+
+            * 請求消息數據格式
+                1.請求行
+                    請求方式 請求url 請求協議/版本
+                    GET /login.html HTTP/1.1
+                    * 請求方式：
+                        * HTTP協議有七種請求方式，常用的有兩種
+                            * GET：
+                                (1)請求參數在請求行中，在url後
+                                (2)請求的url長度有限制
+                                (3)不太安全
+                            * POST：
+                                (1)請求參數在請求體中
+                                (2)請求的url長度沒有限制
+                                (3)相對安全
+
+                2.請求頭：客戶端瀏覽器去告訴服務器一些信息
+                    請求頭名稱：請求頭值
+                        * 常見請求頭：
+                            (1)User-Agent：瀏覽器告訴服務器，我訪問你使用的瀏覽器版本信息
+                                * 可以在服務器端獲取該頭的信息，解決瀏覽器兼容性問題
+                            (2)Referer: http://localhost/login.html
+                                * 告訴服務器，我(當前請求)從哪裡來?
+                                    * 作用：
+                                        1.防盜鏈：
+                                        2.統計工作：
+
+                3.請求空行
+                    * 空行，用於分隔POST請求的請求頭和請求體的
+
+                4.請求體(請求正文)：
+                    * 封裝POST請求消息的請求參數
+
+                * 請求字符串格式：
+                    POST /login.html HTTP/1.1
+                    Host: localhost
+                    User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko
+                    Accept: text/html, application/xhtml+xml,image/jxr
+                    Accept-Language: zh-TW
+                    Accept-Encoding: gzip, deflate
+                    Referer: http://localhost/login.html
+                    Connection: Keep-Alive
+                    If-Modified-Since: Wed, 15 Jul 2020 14:09:54 GMT
+                    If-None-Match: W/"264-1594822194219"
+
+                    username=naluwan
+
+            * 響應消息數據格式
+                1.響應行
+                    (1)組成：協議/版本 響應狀態碼 狀態碼描述
+                    (2)響應狀態碼：服務器告訴客戶端瀏覽器本次請求和響應的一個狀態
+                        1.狀態碼都是三位數字
+                        2.分類：
+                            (1)1xx：服務器就收客戶端消息，但沒有接受完成，等待一段時間後，發送1xx多狀態碼
+                            (2)2xx：成功，代表：200
+                            (3)3xx：重定向，代表：302(重定向)、304(訪問緩存)
+                            (4)4xx：客戶端錯誤
+                                * 代表
+                                    * 404：請求路徑沒有對應的資源
+                                    * 405：請求方式沒有對應的doxxx方法
+                            (5)5xx：服務器端錯誤，代表：500(服務器內部出現異常)
+
+                2.響應頭：
+                    (1)格式：頭名稱：值
+                    (2)常見響應頭
+                        1.Content-Type：服務器告訴客戶端本次響應體數據格式以及編碼格式
+                        2.Content-disposition：服務器告訴客戶端以什麼格式打開響應體數據
+                            * 值：
+                                * in-line：默認值，在當前葉面打開
+                                * attachment;filename=xxx：以附件形式打開響應體，文件下載
+
+                3.響應空行
+                4.響應體：傳輸的數據
+
+            * 響應字符串格式
+            HTTP/1.1 200 OK
+            Content-Type: text/html;charset=UTF-8
+            Content-Length: 103
+            Date: Fri, 17 Jul 2020 17:59:51 GMT
+            Keep-Alive: timeout=20
+            Connection: keep-alive
+
+            <html>
+              <head>
+                <title>$Title$</title>
+              </head>
+              <body>
+                hello , response
+              </body>
+            </html>
+
+        3.Request
+            1.request對象和response對象的原理
+                (1)request和response對象是由服務器創建的，我們來使用他們
+                (2)request對象是來獲取請求消息，response對象是來設置響應消息
+
+            2.request對象繼承體系結構：
+                ServletRequest      -- 接口
+                        | 繼承
+                HttpServletRequest  -- 接口
+                        | 實現
+                org.apache.catalina.connector.RequestFacade 類(tomcat)
+                
+
+            3.request功能：
+                (1)獲取請求消息數據：
+                    1.獲取請求行數據
+                        * GET /day14/demo1?name=naluwan HTTP/1.1
+                        * 方法：
+                            (1)獲取請求方式：GET
+                                * String getMethod()
+                            (2)(*)獲取虛擬目錄：/day14
+                                * String getContextPath()
+                            (3)獲取Servlet路徑：/requestDemo1
+                                * String getServletPath()
+                            (4)獲取gat方式請求參數：name=naluwan
+                                * String getQueryString()
+                            (5)(*)獲取請求URI：/day14/demo1
+                                * String getRequestURI() /day14/requestDemo1
+                                * String getRequestURL() :http://localhost/day14/requestDemo1
+
+                                * URL：統一資源定位符：http://localhost/day14/requestDemo1 美利堅共和國
+                                * URI：統一資源標識符：/day14/requestDemo1                 共和國
+
+                            (6)獲取協議與版本：HTTP/1.1
+                                * String getProtocol()
+                            (7)獲取客戶機的IP地址：
+                                * String gqtRemoteAddr()
+
+                    2.獲取請求頭數據
+                        * 方法：
+                            (1)(*)String getHeader(String name)：通過請求頭的名稱來獲取請求頭的值
+                            (2)Enumeration<String> getHeaderNames()：獲取所有請求頭名稱
+                    3.獲取請求體數據
+                        * 請求體：只有POST請求方式，才有請求體，在請求體中封裝了POST請求的請求參數
+                        * 步驟：
+                            (1)獲取流對象
+                                1.BufferedReader getReader()：獲取字符輸入流，只能操作字符數據
+                                2.ServletInputStream getInputStream()：獲取字節輸入流，可以操作所有類型數據
+                                    * 在文件上傳知識點後講解
+                            (2)在從流對象中拿數據
+
+                (2)其他功能：
+                    1.獲取請求參數通用方式：不論get或post請求方式都可以使用下列方法來獲取請求參數
+                        (1)(*)String getParameter(String name)：根據參數名稱獲取參數值 username=naluwan&password=1230
+                        (2)String[] getParameterValues(String name)：根據參數名稱獲取參數組 hobby=XX&hobby=game
+                        (3)Enumeration<String> ParameterNames()：獲取所有請求的參數名稱
+                        (4)(*)Map<String,String[]> getParameterMap()：獲取所有參數的Map集合
+
+                        * 中文亂碼問題：
+                            * get方式：tomcat 8 已經將get方式亂碼問題解決了
+                            * post方式：會亂碼
+                                * 解決：在獲取參數前，設置request的編碼
+                                request.setCharacterEncoding("utf-8");
+
+                    2.請求轉發：一種在服務器內部的資源跳轉方式
+                        * 步驟：
+                            (1)通過request對象獲取轉發器對象：RequestDispatcher getRequestDispatcher(String path)
+                            (2)使用RequestDispatcher對象來進行轉發：forward(ServletRequest request, ServletResponse response)
+
+                        * 特點：
+                            (1)瀏覽器地址欄路徑不發生變化
+                            (2)只能轉發到當前服務器內部資源中
+                            (3)轉發是一次請求
+
+                    3.共享數據：
+                        * 域對象：一個有作用範圍的對象，可以在範圍內共享數據
+                        * request域：代表一次請求的範圍，一般用於請求轉發的多個資源中共享數據
+                        * 方法：
+                            (1)void setAttribute(String name, Object obj)：存儲數據
+                            (2)Object getAttribute(String name)：通過鍵獲取值
+                            (3)void removeAttribute(String name)：通過鍵移除鍵值對
+
+                    4.獲取ServletContext：
+                        * ServletContext getServletContext
+
+            案例：用戶登入
+                * 用戶登入案例需求：
+                    (1)編寫login.html登入頁面
+                        * username & password 兩個輸入框
+                    (2)使用Druid數據庫連接池技術，操作mysql，day14數據庫中user表
+                    (3)使用JdbcTemplate技術封裝JDBC
+                    (4)登入成功跳轉到SuccessServlet展示：登入成功!用戶名，歡迎您
+                    (5)登入失敗跳轉到FailServlet展示：登入失敗，用戶名或密碼錯誤
+
+                * 分析
+
+                * 開發步驟
+                    1.創建項目、導入html頁面、配置文件、jar包
+                    2.創建數據庫環境
+                        CREATE DATABASE day14;
+                        USE day14;
+                        CREATE TABLE USER(
+                            id INT PRIMARY KEY AUTO_INCREMENT,
+                            username VARCHAR(32) UNIQUE NOT NULL,
+                            PASSWORD VARCHAR(32) NOT NULL
+                        );
+
+                    3.創建包cn.itcast.domain.創建類User
+                        package cn.itcast.domain;
+                        //用戶的實體類
+                        public class User {
+
+                            private int id;
+                            private String username;
+                            private String password;
+
+                            public int getId() {
+                                return id;
+                            }
+
+                            public void setId(int id) {
+                            this.id = id;
+                             }
+
+                            public String getUsername() {
+                                return username;
+                            }
+
+                            public void setUsername(String username) {
+                                this.username = username;
+                            }
+
+                            public String getPassword() {
+                                return password;
+                            }
+
+                            public void setPassword(String password) {
+                                this.password = password;
+                            }
+
+                            @Override
+                            public String toString() {
+                                return "User{" +
+                                    "id=" + id +
+                                    ", username='" + username + '\'' +
+                                    ", password='" + password + '\'' +
+                                    '}';
+                            }
+                        }
+
+                    4.創建包cn.itcast.dao.創建類UserDao，提供login方法
+
+
+
+
+     */
+
+</sctml>
